@@ -1,8 +1,12 @@
 # ----------------------------------------------------------------------------
 # ----------------------------------------------------------------------------
 
-FROM 	   centos:centos7
+#FROM 	   ubuntu:latest
+#FROM 	   alpine:latest
+FROM 	   openjdk:8-jdk-slim
 MAINTAINER Carlos Eduardo Justino <carlos.justino@datacoper.com.br>
+
+#RUN apk update && apk add bash && apk add wget && apk add curl && apk add unzip && apk add zip && rm -rf /var/cache/apk/*
 
 WORKDIR /opt/
 
@@ -19,17 +23,18 @@ WORKDIR /opt/
 ##################
 # Install Java
 ##################
-ADD packs/jdk-8u191-linux-x64.tar.gz /opt/
-RUN ln -s /opt/jdk1.8.0_191 /opt/java
+#ADD packs/jdk-8u191-linux-x64.tar.gz /opt/
 
-RUN echo "export JAVA_HOME=/opt/java" >> /root/.bashrc
-RUN echo "export PATH=$PATH:/opt/java/bin" >> /root/.bashrc
+#RUN ln -s /opt/jdk1.8.0_191 /opt/java
+#RUN echo "export JAVA_HOME=/opt/java" >> /root/.bashrc
+#RUN echo "export PATH=$PATH:/opt/java/bin" >> /root/.bashrc
 
-ENV JAVA_HOME /opt/java
-ENV PATH=$PATH:/opt/java/bin
+#ENV JAVA_HOME /opt/java
+#ENV PATH=$PATH:/opt/java/bin
 
 ###################
 # Setup run script
 ###################
+RUN java -version
 
-CMD ["/bin/bash"]
+CMD ["bash"]
